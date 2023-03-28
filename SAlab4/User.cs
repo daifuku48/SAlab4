@@ -33,17 +33,5 @@ namespace SAlab4
             Email = email;
             Roles = roles;
         }
-
-        public static User LoadFromFile(string filename)
-        {
-            string json = File.ReadAllText(filename);
-            return JsonConvert.DeserializeObject<User>(json);
-        }
-
-        public void SaveToFile(string filename)
-        {
-            string json = JsonConvert.SerializeObject(this);
-            File.WriteAllText(filename, json);
-        }
     }
 }

@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Form1 : Form
+    public partial class Auth : Form
     {
-        public Form1()
+        public Auth()
         {
             InitializeComponent();
         }
@@ -82,7 +82,32 @@ namespace SAlab4
                 return;
             List<string> listRoles = new List<string>() { "user" };
             Data.currentUser = new User(nameTextBox.Text, emailSign.Text, passwordSignIn.Text, listRoles);
-            Data.currentUser.SaveToFile("users.txt");
+            string json = File.ReadAllText("users.txt")
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
+            if (users != null)
+            {
+                for (int i = 0; i < users.Count; i++)
+                {
+                    if (users[i].Email == Data.currentUser.Email)
+                    {
+                        MessageBox.Show("Користувач з даним емейлом існує");
+                        return;
+                    }
+                }
+                users = new List<User>();
+                users.Add(Data.currentUser);
+            }
+            else
+            {
+                users = new List<User>();
+                users.Add(Data.currentUser);
+            }
+                string js = JsonConvert.SerializeObject(users);
+            File.WriteAllText("users.txt", js);
+            MessageBox.Show("Користувача зареєстровано");
+            Menu form = new Menu();
+            this.Hide();
+            form.Show();
         }
 
         private bool login()
@@ -90,7 +115,7 @@ namespace SAlab4
             string json = File.ReadAllText("users.txt");
 
             // Deserialize the JSON into an array of User objects
-            User[] users = JsonConvert.DeserializeObject<User>(json);
+            User[] users = JsonConvert.DeserializeObject<User[]>(json);
 
             // Find the user with matching login and password
             foreach (User user in users)
@@ -110,6 +135,15 @@ namespace SAlab4
             var check = login();
             if (!check)
                 MessageBox.Show("Користувача з даним або емейлом або паролем не існує");
+            MessageBox.Show("Авторизація прошла успішно");
+            Menu form = new Menu();
+            this.Hide();
+            form.Show();
+        }
+
+        private void passwordLogIn_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

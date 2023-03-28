@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Form1
+    partial class Auth
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -169,10 +169,12 @@
             this.passwordLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.passwordLogIn.Location = new System.Drawing.Point(289, 167);
             this.passwordLogIn.Name = "passwordLogIn";
+            this.passwordLogIn.PasswordChar = '*';
             this.passwordLogIn.Size = new System.Drawing.Size(144, 26);
             this.passwordLogIn.TabIndex = 13;
+            this.passwordLogIn.TextChanged += new System.EventHandler(this.passwordLogIn_TextChanged);
             // 
-            // Form1
+            // Auth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,7 +193,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Auth";
             this.Text = "Log in";
             this.ResumeLayout(false);
             this.PerformLayout();
