@@ -86,7 +86,7 @@ namespace SAlab4
             List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
             if (ques != null)
             {
-                que.id = ques[ques.Count - 1].id;
+                que.id = ques[ques.Count - 1].id + 1;
 
             } else
             {

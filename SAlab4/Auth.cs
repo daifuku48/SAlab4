@@ -82,7 +82,7 @@ namespace SAlab4
                 return;
             List<string> listRoles = new List<string>() { "user" };
             Data.currentUser = new User(nameTextBox.Text, emailSign.Text, passwordSignIn.Text, listRoles);
-            string json = File.ReadAllText("users.txt")
+            string json = File.ReadAllText("users.txt");
             List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
             if (users != null)
             {

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="AddTest.cs">
@@ -62,6 +63,18 @@
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Redag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redag.Designer.cs">
+      <DependentUpon>Redag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Redaging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Redaging.Designer.cs">
+      <DependentUpon>Redaging.cs</DependentUpon>
     </Compile>
     <Compile Include="Start_FinishForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +109,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Redag.resx">
+      <DependentUpon>Redag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Redaging.resx">
+      <DependentUpon>Redaging.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Start_FinishForm.resx">
       <DependentUpon>Start_FinishForm.cs</DependentUpon>
     </EmbeddedResource>

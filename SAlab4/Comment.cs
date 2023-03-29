@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SAlab4
 {
-    public static class Data
+    public class Comment
     {
-        public static User currentUser;
-        public static Question questionForRedag;
+        public string Name { get; set; }
+        public string Text { get; set; }
     }
 }
