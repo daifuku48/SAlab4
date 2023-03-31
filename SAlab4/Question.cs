@@ -17,6 +17,8 @@ namespace SAlab4
         public List<Comment> comments { get; set; } 
         public List<string> emailsForCheck { get; set; }
 
+        public List<Answer> answers { get; set; }
+
         public Question()
         {
             id = 0;

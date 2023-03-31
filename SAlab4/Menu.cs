@@ -38,5 +38,11 @@ namespace SAlab4
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Tests form = new Tests();
+            form.Show();
+        }
     }
 }

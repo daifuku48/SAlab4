@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,20 @@ namespace SAlab4
         public Redaging()
         {
             InitializeComponent();
+            string json = File.ReadAllText("questions.txt");
+            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
+            for (int i = 0; i < ques.Count; i++)
+            {
+               redagComboBox.Items.Add($"{ques[i].id}={ques[i].Quest}");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Redag form = new Redag();
+            Data.questionForRedag = redagComboBox.SelectedItem.ToString();
+            form.Show();
         }
     }
 }

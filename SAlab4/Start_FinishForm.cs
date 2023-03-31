@@ -20,14 +20,18 @@ namespace SAlab4
             InitializeComponent(); 
             string json = File.ReadAllText("questions.txt");
             List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            if (ques != null)
             {
-                if (!ques[i].isActive)
+                for (int i = 0; i < ques.Count; i++)
                 {
-                    noActiveComboBox1.Items.Add($"{ques[i].id}={ques[i].Quest}");
-                } else
-                {
-                    activeComboBox2.Items.Add($"{ques[i].id}={ques[i].Quest}");
+                    if (!ques[i].isActive)
+                    {
+                        noActiveComboBox1.Items.Add($"{ques[i].id}={ques[i].Quest}");
+                    }
+                    else
+                    {
+                        activeComboBox2.Items.Add($"{ques[i].id}={ques[i].Quest}");
+                    }
                 }
             }
             checkButtons();
