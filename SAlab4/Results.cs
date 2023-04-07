@@ -1,13 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SAlab4
@@ -91,8 +85,19 @@ namespace SAlab4
                         totalAnswers += 1.0;
                     }
                 }
+                writeRightAnswer(currentQuest);
                 write_answers(currentQuest, answer1, answer2, answer3, totalAnswers);
             }
+        }
+
+        private void writeRightAnswer(Question question)
+        {
+            if (question.answer1[1] == "1")
+                label2.Text = "Вірна відповідь";
+            else if (question.answer2[1] == "1")
+                label3.Text = "Вірна відповідь";
+            else if (question.answer3[1] == "1")
+                label4.Text = "Вірна відповідь";
         }
 
         private void write_answers(Question quest,int answer1, int answer2, int answer3, double totalAnswers)
@@ -103,6 +108,11 @@ namespace SAlab4
             answer2_label.Text = quest.answer2[0] + ": " + ans2.ToString() + " %";
             double ans3 = answer3 / totalAnswers * 100;
             answer3_label.Text = quest.answer3[0] + ": " + ans3.ToString() + " %";
+        }
+
+        private void Results_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

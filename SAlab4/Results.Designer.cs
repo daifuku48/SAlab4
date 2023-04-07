@@ -34,6 +34,9 @@
             this.answer1_label = new System.Windows.Forms.Label();
             this.answer2_label = new System.Windows.Forms.Label();
             this.answer3_label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // start_test_button
@@ -96,11 +99,38 @@
             this.answer3_label.TabIndex = 8;
             this.answer3_label.Text = "-";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(300, 294);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(300, 331);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(300, 365);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 11;
+            // 
             // Results
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 457);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.answer3_label);
             this.Controls.Add(this.answer2_label);
             this.Controls.Add(this.answer1_label);
@@ -109,6 +139,7 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "Results";
             this.Text = "Результати";
+            this.Load += new System.EventHandler(this.Results_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,5 +153,8 @@
         private System.Windows.Forms.Label answer1_label;
         private System.Windows.Forms.Label answer2_label;
         private System.Windows.Forms.Label answer3_label;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
