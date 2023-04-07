@@ -68,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 255);
+            this.ClientSize = new System.Drawing.Size(519, 281);
             this.Controls.Add(this.start_test_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);

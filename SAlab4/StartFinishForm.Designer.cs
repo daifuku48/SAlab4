@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Start_FinishForm
+    partial class StartFinishForm
     {
         /// <summary>
         /// Required designer variable.

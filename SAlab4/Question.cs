@@ -16,7 +16,6 @@ namespace SAlab4
         public bool isActive { get; set; }
         public List<Comment> comments { get; set; } 
         public List<string> emailsForCheck { get; set; }
-
         public List<Answer> answers { get; set; }
 
         public Question()
@@ -28,6 +27,7 @@ namespace SAlab4
             emailsForCheck = new List<string>();
             Quest = "";
             isActive = false;
+            answers = new List<Answer>();
             comments = new List<Comment>();
         }
 
@@ -40,6 +40,7 @@ namespace SAlab4
             this.isActive = isActive;
             emailsForCheck = new List<string>();
             comments = new List<Comment>();
+            answers = new List<Answer>();
             isActive = false;
         }
     }

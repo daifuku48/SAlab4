@@ -1,40 +1,45 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Start_FinishForm : Form
+    public partial class StartFinishForm : Form
     {
-        public Start_FinishForm()
+        private List<Question> questions;
+
+        public StartFinishForm()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            loadQuestions();
+            writeComboBoxes();
+            checkButtons();
+        }
+
+        private void loadQuestions()
+        {
             string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            if (ques != null)
+            questions = JsonConvert.DeserializeObject<List<Question>>(json) ?? new List<Question>(); // Додали перевірку на null
+        }
+
+        private void writeComboBoxes()
+        {
+            if (questions != null)
             {
-                for (int i = 0; i < ques.Count; i++)
+                for (int i = 0; i < questions.Count; i++)
                 {
-                    if (!ques[i].isActive)
+                    if (!questions[i].isActive)
                     {
-                        noActiveComboBox1.Items.Add($"{ques[i].id}={ques[i].Quest}");
+                        noActiveComboBox1.Items.Add($"{questions[i].id}={questions[i].Quest}");
                     }
                     else
                     {
-                        activeComboBox2.Items.Add($"{ques[i].id}={ques[i].Quest}");
+                        activeComboBox2.Items.Add($"{questions[i].id}={questions[i].Quest}");
                     }
                 }
             }
-            checkButtons();
         }
 
         private void startQuest_Click(object sender, EventArgs e)
@@ -44,24 +49,27 @@ namespace SAlab4
                 string item = noActiveComboBox1.SelectedItem.ToString();
                 string[] SelectedItem = item.Split('=');
                 int currentIndex = noActiveComboBox1.SelectedIndex;
-                string json = File.ReadAllText("questions.txt");
-                List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-                for (int i = 0; i < ques.Count; i++)
+                for (int i = 0; i < questions.Count; i++)
                 {
-                    if (Convert.ToInt32(SelectedItem[0]) == ques[i].id)
+                    if (Convert.ToInt32(SelectedItem[0]) == questions[i].id)
                     {
-                        ques[i].isActive = true;
+                        questions[i].isActive = true;
                         noActiveComboBox1.Items.RemoveAt(currentIndex);
                     }
                 }
-                string js = JsonConvert.SerializeObject(ques);
-                File.WriteAllText("questions.txt", js);
+                rewriteFile();
                 activeComboBox2.Items.Add(item);
                 activeComboBox2.Text = "";
                 label3.Text = "Тест розпочато";
                 checkButtons();
             }
             
+        }
+
+        private void rewriteFile()
+        {
+            string json = JsonConvert.SerializeObject(questions);
+            File.WriteAllText("questions.txt", json);
         }
 
         private void Start_FinishForm_Load(object sender, EventArgs e)
@@ -76,18 +84,15 @@ namespace SAlab4
                 string item = activeComboBox2.SelectedItem.ToString();
                 string[] SelectedItem = item.Split('=');
                 int currentIndex = activeComboBox2.SelectedIndex;
-                string json = File.ReadAllText("questions.txt");
-                List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-                for (int i = 0; i < ques.Count; i++)
+                for (int i = 0; i < questions.Count; i++)
                 {
-                    if (Convert.ToInt32(SelectedItem[0]) == ques[i].id)
+                    if (Convert.ToInt32(SelectedItem[0]) == questions[i].id)
                     {
-                        ques[i].isActive = false;
+                        questions[i].isActive = false;
                         activeComboBox2.Items.RemoveAt(currentIndex);
                     }
                 }
-                string js = JsonConvert.SerializeObject(ques);
-                File.WriteAllText("questions.txt", js);
+                rewriteFile();
                 noActiveComboBox1.Items.Add(item);
                 noActiveComboBox1.Text = "";
                 label3.Text = "Тест зупинено";

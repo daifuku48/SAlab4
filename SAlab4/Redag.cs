@@ -14,30 +14,43 @@ namespace SAlab4
 {
     public partial class Redag : Form
     {
+        private List<Question> questions;
         public Redag()
         {
             InitializeComponent();
             string item = Data.questionForRedag;
             string[] SelectedItem = item.Split('=');
-            string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            readFile();
+            
+            for (int i = 0; i < questions.Count; i++)
             {
-               if (ques[i].id == Convert.ToInt32(SelectedItem[0]))
+               if (questions[i].id == Convert.ToInt32(SelectedItem[0]))
                 {
-                    questionTextBox.Text = ques[i].Quest;
-                    answer1TextBox.Text = ques[i].answer1[0];
-                    answer2TextBox.Text = ques[i].answer2[0];
-                    answer3TextBox.Text = ques[i].answer3[0];
-                    if (ques[i].answer1[1] == Data.CORRECT_ANSWER)
-                        radioButton1.Enabled = true;
-                    else if (ques[i].answer2[1] == Data.CORRECT_ANSWER)
-                        radioButton2.Enabled = true;
-                    else if (ques[i].answer3[1] == Data.CORRECT_ANSWER)
-                        radioButton3.Enabled = true;
+                    questionTextBox.Text = questions[i].Quest;
+                    answer1TextBox.Text = questions[i].answer1[0];
+                    answer2TextBox.Text = questions[i].answer2[0];
+                    answer3TextBox.Text = questions[i].answer3[0];
+                    if (questions[i].answer1[1] == Data.CORRECT_ANSWER)
+                        radioButton1.Checked = true;
+                    else if (questions[i].answer2[1] == Data.CORRECT_ANSWER)
+                        radioButton2.Checked = true;
+                    else if (questions[i].answer3[1] == Data.CORRECT_ANSWER)
+                        radioButton3.Checked = true;
                     break;
                 }
             }
+        }
+
+        private void readFile()
+        {
+            string json = File.ReadAllText("questions.txt");
+            questions = JsonConvert.DeserializeObject<List<Question>>(json);
+        }
+
+        private void rewriteFile()
+        {
+            string json = JsonConvert.SerializeObject(questions);
+            File.WriteAllText("questions.txt", json);
         }
 
         private void Redag_Load(object sender, EventArgs e)
@@ -45,57 +58,52 @@ namespace SAlab4
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void redag_Click(object sender, EventArgs e)
         {
             string item = Data.questionForRedag;
             string[] SelectedItem = item.Split('=');
-            string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            for (int i = 0; i < questions.Count; i++)
             {
-                if (ques[i].id == Convert.ToInt32(SelectedItem[0]))
+                if (questions[i].id == Convert.ToInt32(SelectedItem[0]))
                 {
-                    ques[i].Quest = questionTextBox.Text;
-                    ques[i].answer1[0] = answer1TextBox.Text;
-                    ques[i].answer2[0] = answer2TextBox.Text;
-                    ques[i].answer3[0] = answer3TextBox.Text;
+                    questions[i].Quest = questionTextBox.Text;
+                    questions[i].answer1[0] = answer1TextBox.Text;
+                    questions[i].answer2[0] = answer2TextBox.Text;
+                    questions[i].answer3[0] = answer3TextBox.Text;
                     if (radioButton1.Enabled)
-                        ques[i].answer1[1] = Data.CORRECT_ANSWER;
+                        questions[i].answer1[1] = Data.CORRECT_ANSWER;
                     else if (!radioButton1.Enabled)
-                        ques[i].answer1[1] = Data.WRONG_ANSWER;
+                        questions[i].answer1[1] = Data.WRONG_ANSWER;
                     else if (radioButton2.Enabled)
-                        ques[i].answer2[1] = Data.CORRECT_ANSWER;
+                        questions[i].answer2[1] = Data.CORRECT_ANSWER;
                     else if (!radioButton2.Enabled)
-                        ques[i].answer2[1] = Data.WRONG_ANSWER;
+                        questions[i].answer2[1] = Data.WRONG_ANSWER;
                     else if (radioButton3.Enabled)
-                        ques[i].answer3[1] = Data.CORRECT_ANSWER;
+                        questions[i].answer3[1] = Data.CORRECT_ANSWER;
                     else if (!radioButton3.Enabled)
-                        ques[i].answer3[1] = Data.WRONG_ANSWER;
+                        questions[i].answer3[1] = Data.WRONG_ANSWER;
                     break;
                 }
             }
-            string js = JsonConvert.SerializeObject(ques);
-            File.WriteAllText("questions.txt", js);
+            rewriteFile();
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void remove_Click(object sender, EventArgs e)
         {
             string item = Data.questionForRedag;
             string[] SelectedItem = item.Split('=');
-            string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
             List<Question> newQues = new List<Question>();
-            for (int i = 0; i < ques.Count; i++)
+            for (int i = 0; i < questions.Count; i++)
             {
-                if (ques[i].id != Convert.ToInt32(SelectedItem[0]))
+                if (questions[i].id != Convert.ToInt32(SelectedItem[0]))
                 {
-                    newQues.Add(ques[i]);
+                    newQues.Add(questions[i]);
                 }
             }
             string js = JsonConvert.SerializeObject(newQues);

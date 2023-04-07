@@ -28,8 +28,8 @@ namespace SAlab4
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            Redag form = new Redag();
             Data.questionForRedag = redagComboBox.SelectedItem.ToString();
+            Redag form = new Redag();
             form.Show();
         }
     }

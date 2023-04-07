@@ -1,13 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SAlab4
@@ -15,19 +9,34 @@ namespace SAlab4
     public partial class Tests : Form
     {
         List<int> ids = new List<int>();
+        List<Question> questions;
         public Tests()
         {
             InitializeComponent();
-            string item = Data.questionForRedag;
-            string[] SelectedItem = item.Split('=');
+            initComboBox();
+        }
+
+        private void initComboBox()
+        {
             string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            questions = JsonConvert.DeserializeObject<List<Question>>(json);
+            for (int i = 0; i < questions.Count; i++)
             {
-                if (ques[i].isActive)
+                if (questions[i].isActive)
                 {
-                    comboBox1.Items.Add(ques[i]);
-                    ids.Add(ques[i].id);
+                    bool check = true;
+                    for (int j = 0; j < questions[i].emailsForCheck.Count; j++)
+                    {
+                        if (Data.currentUser.Email == questions[i].emailsForCheck[j])
+                        {
+                            check = false;
+                        }
+                    }
+                    if (check)
+                    {
+                        comboBox1.Items.Add($"{questions[i].Quest}");
+                        ids.Add(questions[i].id);
+                    }
                 }
             }
         }
@@ -48,22 +57,28 @@ namespace SAlab4
             int id = 0;
             for (int i = 0; i < ids.Count; i++)
             {
-                if (index == ids[i])
+                if (index == i)
                 {
                     id = ids[i];
                 }
             }
-            string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            for (int i = 0; i < questions.Count; i++)
             {
-                if (ques[i].id == id)
+                if (questions[i].id == id)
                 {
-                    Data.currentTest = ques[i];
-
+                    Data.currentTest = questions[i];
                     break;
                 }
             }
+            openFormTest();
+        }
+
+        private void openFormTest()
+        {
+            Test form = new Test();
+            MessageBox.Show("Тест розпочато");
+            form.Show();
+            this.Close();
         }
     }
 }

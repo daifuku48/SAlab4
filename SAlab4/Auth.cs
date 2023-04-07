@@ -94,7 +94,6 @@ namespace SAlab4
                         return;
                     }
                 }
-                users = new List<User>();
                 users.Add(Data.currentUser);
             }
             else
@@ -102,7 +101,7 @@ namespace SAlab4
                 users = new List<User>();
                 users.Add(Data.currentUser);
             }
-                string js = JsonConvert.SerializeObject(users);
+            string js = JsonConvert.SerializeObject(users);
             File.WriteAllText("users.txt", js);
             MessageBox.Show("Користувача зареєстровано");
             Menu form = new Menu();
@@ -134,7 +133,10 @@ namespace SAlab4
         {
             var check = login();
             if (!check)
+            {
                 MessageBox.Show("Користувача з даним або емейлом або паролем не існує");
+                return;
+            }
             MessageBox.Show("Авторизація прошла успішно");
             Menu form = new Menu();
             this.Hide();

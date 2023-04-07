@@ -55,21 +55,21 @@ namespace SAlab4
             var answer2 = answer2TextBox.Text.Trim();
             var answer3 = answer3TextBox.Text.Trim();
             string ans1 = "", ans2 = "", ans3 = ""; 
-            if (radioButton1.Checked)
+            if (radioButton1.Enabled)
             {
-                ans1 = "1";
-                ans2 = "0";
-                ans3 = "1";
-            } else if (radioButton2.Checked)
+                ans1 = Data.WRONG_ANSWER;
+                ans2 = Data.WRONG_ANSWER;
+                ans3 = Data.CORRECT_ANSWER;
+            } else if (radioButton2.Enabled)
             {
-                ans1 = "0";
-                ans2 = "1";
-                ans3 = "0";
-            } else if (radioButton3.Checked)
+                ans1 = Data.WRONG_ANSWER;
+                ans2 = Data.CORRECT_ANSWER;
+                ans3 = Data.WRONG_ANSWER;
+            } else if (radioButton3.Enabled)
             {
-                ans1 = "0";
-                ans2 = "1";
-                ans3 = "0";
+                ans1 = Data.WRONG_ANSWER;
+                ans2 = Data.CORRECT_ANSWER;
+                ans3 = Data.WRONG_ANSWER;
             }
             List<string> answer1List = new List<string>();
             answer1List.Add(answer1);
@@ -96,6 +96,11 @@ namespace SAlab4
             string js = JsonConvert.SerializeObject(ques);
             File.WriteAllText("questions.txt", js);
             label7.Text = "Питання збережено";
+            clear();
+        }
+        
+        private void clear()
+        {
             questionTextBox.Text = "";
             answer1TextBox.Text = "";
             answer2TextBox.Text = "";
