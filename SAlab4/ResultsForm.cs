@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Results : Form
+    public partial class ResultsForm : Form
     {
         List<int> ids = new List<int>();
         List<Question> questions;
-        public Results()
+        public ResultsForm()
         {
             InitializeComponent();
             loadQuestions();
@@ -19,8 +19,7 @@ namespace SAlab4
 
         private void loadQuestions()
         {
-            string json = File.ReadAllText("questions.txt");
-            questions = JsonConvert.DeserializeObject<List<Question>>(json);
+            questions = FileOperating.readFileQuestions();
         }
 
         private void writeComboBox()

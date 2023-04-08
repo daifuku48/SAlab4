@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Menu
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.

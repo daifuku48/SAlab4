@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class AddTest : Form
+    public partial class AddTestForm : Form
     {
-        public AddTest()
+        public AddTestForm()
         {
             InitializeComponent();
         }
@@ -76,19 +76,17 @@ namespace SAlab4
             answer3List.Add(ans3);
             Question que = new Question(question, answer1List, answer2List, answer3List);
             string json = File.ReadAllText("questions.txt");
-            // Deserialize the JSON into an array of User objects
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            if (ques != null)
+            List<Question> questions = JsonConvert.DeserializeObject<List<Question>>(json);
+            if (questions != null)
             {
-                que.id = ques[ques.Count - 1].id + 1;
+                que.id = questions[questions.Count - 1].id + 1;
 
             } else
             {
-                ques = new List<Question>();
+                questions = new List<Question>();
             }
-            ques.Add(que);
-            string js = JsonConvert.SerializeObject(ques);
-            File.WriteAllText("questions.txt", js);
+            questions.Add(que);
+            FileOperating.rewriteFileQuestions(questions);
             label7.Text = "Питання збережено";
             clear();
         }

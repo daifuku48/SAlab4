@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Test : Form
+    public partial class TestForm : Form
     {
 
-        List<Question> questions;
-        public Test()
+        List<Question> questions = new List<Question>();
+        public TestForm()
         {
             InitializeComponent();
             initQuestion();
@@ -27,24 +27,31 @@ namespace SAlab4
                 listBox1.Items.Add($"{Data.currentTest.comments[i].Name}: {Data.currentTest.comments[i].Text}");
             }
         }
+        
+        private int GetSelectedAnswerIndex()
+        {
+            if (radioButton1.Checked)
+            {
+                return 1;
+            }
+            else if (radioButton2.Checked)
+            {
+                return 2;
+            }
+            else if (radioButton3.Checked)
+            {
+                return 3;
+            }
+            return -1;
+        }
 
         private void answer_Click(object sender, EventArgs e)
         {
-            int ans = 0;
-            if (radioButton1.Checked)
-            {
-                ans = 1;
-            } else if (radioButton2.Checked)
-            {
-                ans = 2;
-            } else if (radioButton3.Checked)
-            {
-                ans = 3;
-            }
+            var ans = GetSelectedAnswerIndex();
             Answer answer = new Answer(Data.currentUser.Email, Data.currentTest.id, Data.currentTest.Quest, ans);
             Data.currentTest.answers.Add(answer);
             Data.currentTest.emailsForCheck.Add(Data.currentUser.Email);
-            readFile();
+            questions = FileOperating.readFileQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                 if (questions[i].id == Data.currentTest.id)
@@ -52,15 +59,9 @@ namespace SAlab4
                     questions[i] = Data.currentTest;
                 }
             }
-            rewriteFile();
+            FileOperating.rewriteFileQuestions(questions);
             MessageBox.Show("Відповідь прийнято");
             this.Close();
-        }
-
-        private void readFile()
-        {
-            string json = File.ReadAllText("questions.txt");
-            questions = JsonConvert.DeserializeObject<List<Question>>(json);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,14 +81,8 @@ namespace SAlab4
                     questions[i].comments.Add(ans);
                 }
             }
-            rewriteFile();
+            FileOperating.rewriteFileQuestions(questions);
             listBox1.Items.Add($"{ans.Name}: {ans.Text}");
-        }
-
-        private void rewriteFile()
-        {
-            string json = JsonConvert.SerializeObject(questions);
-            File.WriteAllText("questions.txt", json);
         }
     }
 }

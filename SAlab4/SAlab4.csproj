@@ -51,11 +51,12 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="Results.cs">
+    <Compile Include="FileOperating.cs" />
+    <Compile Include="ResultsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Results.Designer.cs">
-      <DependentUpon>Results.cs</DependentUpon>
+    <Compile Include="ResultsForm.Designer.cs">
+      <DependentUpon>ResultsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StartFinishForm.cs">
       <SubType>Form</SubType>
@@ -63,64 +64,64 @@
     <Compile Include="StartFinishForm.Designer.cs">
       <DependentUpon>StartFinishForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test.cs">
+    <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tests.cs">
+    <Compile Include="StartTestsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tests.Designer.cs">
-      <DependentUpon>Tests.cs</DependentUpon>
+    <Compile Include="StartTestsForm.Designer.cs">
+      <DependentUpon>StartTestsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Question.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="AddTest.cs">
+    <Compile Include="AddTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddTest.Designer.cs">
-      <DependentUpon>AddTest.cs</DependentUpon>
+    <Compile Include="AddTestForm.Designer.cs">
+      <DependentUpon>AddTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Redag.cs">
+    <Compile Include="RedagForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Redag.Designer.cs">
-      <DependentUpon>Redag.cs</DependentUpon>
+    <Compile Include="RedagForm.Designer.cs">
+      <DependentUpon>RedagForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Redaging.cs">
+    <Compile Include="RedagingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Redaging.Designer.cs">
-      <DependentUpon>Redaging.cs</DependentUpon>
+    <Compile Include="RedagingForm.Designer.cs">
+      <DependentUpon>RedagingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <Compile Include="Auth.cs">
+    <Compile Include="AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auth.Designer.cs">
-      <DependentUpon>Auth.cs</DependentUpon>
+    <Compile Include="AuthForm.Designer.cs">
+      <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Auth.resx">
-      <DependentUpon>Auth.cs</DependentUpon>
+    <EmbeddedResource Include="AuthForm.resx">
+      <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddTest.resx">
-      <DependentUpon>AddTest.cs</DependentUpon>
+    <EmbeddedResource Include="AddTestForm.resx">
+      <DependentUpon>AddTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Results.resx">
-      <DependentUpon>Results.cs</DependentUpon>
+    <EmbeddedResource Include="ResultsForm.resx">
+      <DependentUpon>ResultsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,20 +132,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Redag.resx">
-      <DependentUpon>Redag.cs</DependentUpon>
+    <EmbeddedResource Include="RedagForm.resx">
+      <DependentUpon>RedagForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Redaging.resx">
-      <DependentUpon>Redaging.cs</DependentUpon>
+    <EmbeddedResource Include="RedagingForm.resx">
+      <DependentUpon>RedagingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartFinishForm.resx">
       <DependentUpon>StartFinishForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tests.resx">
-      <DependentUpon>Tests.cs</DependentUpon>
+    <EmbeddedResource Include="StartTestsForm.resx">
+      <DependentUpon>StartTestsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

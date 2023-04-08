@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Auth
+    partial class AuthForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.

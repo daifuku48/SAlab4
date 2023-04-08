@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Redag
+    partial class RedagForm
     {
         /// <summary>
         /// Required designer variable.

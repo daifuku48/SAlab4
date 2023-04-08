@@ -6,16 +6,15 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Redaging : Form
+    public partial class RedagingForm : Form
     {
-        public Redaging()
+        public RedagingForm()
         {
             InitializeComponent();
-            string json = File.ReadAllText("questions.txt");
-            List<Question> ques = JsonConvert.DeserializeObject<List<Question>>(json);
-            for (int i = 0; i < ques.Count; i++)
+            List<Question> questions = FileOperating.readFileQuestions();
+            for (int i = 0; i < questions.Count; i++)
             {
-               redagComboBox.Items.Add($"{ques[i].id}={ques[i].Quest}");
+               redagComboBox.Items.Add($"{questions[i].id}={questions[i].Quest}");
             }
         }
 
@@ -23,7 +22,7 @@ namespace SAlab4
         {
             this.Close();
             Data.questionForRedag = redagComboBox.SelectedItem.ToString();
-            Redag form = new Redag();
+            RedagForm form = new RedagForm();
             form.Show();
         }
     }

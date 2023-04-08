@@ -8,7 +8,7 @@ namespace SAlab4
 {
     public partial class StartFinishForm : Form
     {
-        private List<Question> questions;
+        private List<Question> questions = new List<Question>();
 
         public StartFinishForm()
         {
@@ -20,8 +20,7 @@ namespace SAlab4
 
         private void loadQuestions()
         {
-            string json = File.ReadAllText("questions.txt");
-            questions = JsonConvert.DeserializeObject<List<Question>>(json) ?? new List<Question>(); // Додали перевірку на null
+            questions = FileOperating.readFileQuestions();
         }
 
         private void writeComboBoxes()
@@ -57,19 +56,13 @@ namespace SAlab4
                         noActiveComboBox1.Items.RemoveAt(currentIndex);
                     }
                 }
-                rewriteFile();
+                FileOperating.rewriteFileQuestions(questions);
                 activeComboBox2.Items.Add(item);
                 activeComboBox2.Text = "";
                 label3.Text = "Тест розпочато";
                 checkButtons();
             }
             
-        }
-
-        private void rewriteFile()
-        {
-            string json = JsonConvert.SerializeObject(questions);
-            File.WriteAllText("questions.txt", json);
         }
 
         private void Start_FinishForm_Load(object sender, EventArgs e)
@@ -92,7 +85,7 @@ namespace SAlab4
                         activeComboBox2.Items.RemoveAt(currentIndex);
                     }
                 }
-                rewriteFile();
+                FileOperating.rewriteFileQuestions(questions);
                 noActiveComboBox1.Items.Add(item);
                 noActiveComboBox1.Text = "";
                 label3.Text = "Тест зупинено";
@@ -102,22 +95,8 @@ namespace SAlab4
 
         private void checkButtons()
         {
-            if (activeComboBox2.Items.Count == 0)
-            {
-                button2.Enabled = false;
-            }
-            if (activeComboBox2.Items.Count != 0)
-            {
-                button2.Enabled = true;
-            }
-            if (noActiveComboBox1.Items.Count == 0)
-            {
-                button1.Enabled = false;
-            }
-            if (noActiveComboBox1.Items.Count != 0)
-            {
-                button1.Enabled = true;
-            }
+            button1.Enabled = noActiveComboBox1.Items.Count > 0;
+            button2.Enabled = activeComboBox2.Items.Count > 0;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Test
+    partial class TestForm
     {
         /// <summary>
         /// Required designer variable.

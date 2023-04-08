@@ -6,16 +6,16 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Redag : Form
+    public partial class RedagForm : Form
     {
-        private List<Question> questions;
-        public Redag()
+        private List<Question> questions = new List<Question>();
+        public RedagForm()
         {
             InitializeComponent();
             string item = Data.questionForRedag;
             string[] SelectedItem = item.Split('=');
-            readFile();
-            
+            questions = FileOperating.readFileQuestions();
+
             for (int i = 0; i < questions.Count; i++)
             {
                if (questions[i].id == Convert.ToInt32(SelectedItem[0]))
@@ -35,17 +35,6 @@ namespace SAlab4
             }
         }
 
-        private void readFile()
-        {
-            string json = File.ReadAllText("questions.txt");
-            questions = JsonConvert.DeserializeObject<List<Question>>(json);
-        }
-
-        private void rewriteFile()
-        {
-            string json = JsonConvert.SerializeObject(questions);
-            File.WriteAllText("questions.txt", json);
-        }
 
         private void Redag_Load(object sender, EventArgs e)
         {
@@ -79,7 +68,7 @@ namespace SAlab4
                     break;
                 }
             }
-            rewriteFile();
+            FileOperating.rewriteFileQuestions(questions);
             this.Close();
         }
 
@@ -100,8 +89,7 @@ namespace SAlab4
                     newQues.Add(questions[i]);
                 }
             }
-            string js = JsonConvert.SerializeObject(newQues);
-            File.WriteAllText("questions.txt", js);
+            FileOperating.rewriteFileQuestions(newQues);
             this.Close();
         }
     }

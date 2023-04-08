@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Results
+    partial class ResultsForm
     {
         /// <summary>
         /// Required designer variable.

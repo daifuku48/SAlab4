@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Auth : Form
+    public partial class AuthForm : Form
     {
-        public Auth()
+        public AuthForm()
         {
             InitializeComponent();
         }
@@ -76,63 +76,26 @@ namespace SAlab4
                 return;
             List<string> listRoles = new List<string>() { "user" };
             Data.currentUser = new User(nameTextBox.Text, emailSign.Text, passwordSignIn.Text, listRoles);
-            string json = File.ReadAllText("users.txt");
-            List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
-            if (users != null)
-            {
-                for (int i = 0; i < users.Count; i++)
-                {
-                    if (users[i].Email == Data.currentUser.Email)
-                    {
-                        MessageBox.Show("Користувач з даним емейлом існує");
-                        return;
-                    }
-                }
-                users.Add(Data.currentUser);
-            }
-            else
-            {
-                users = new List<User>();
-                users.Add(Data.currentUser);
-            }
-            string js = JsonConvert.SerializeObject(users);
-            File.WriteAllText("users.txt", js);
+            FileOperating.signMember();
             MessageBox.Show("Користувача зареєстровано");
-            Menu form = new Menu();
+            MenuForm form = new MenuForm();
             this.Hide();
             form.Show();
         }
 
-        private bool login()
-        {
-            string json = File.ReadAllText("users.txt");
-
-            // Deserialize the JSON into an array of User objects
-            User[] users = JsonConvert.DeserializeObject<User[]>(json);
-
-            // Find the user with matching login and password
-            foreach (User user in users)
-            {
-                if (user.Email == emailLogIn.Text.Trim() && user.Password == passwordLogIn.Text.Trim())
-                {
-                    Data.currentUser = user;
-                    return true; // Login successful
-                }
-            }
-
-            return false;
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            var check = login();
-            if (!check)
+            bool checkLog = checkSignIn();
+            if (!checkLog)
+                return;
+            var checkAuth = FileOperating.loginMember(emailLogIn.Text.Trim(), passwordLogIn.Text.Trim());
+            if (!checkAuth)
             {
                 MessageBox.Show("Користувача з даним або емейлом або паролем не існує");
                 return;
             }
             MessageBox.Show("Авторизація прошла успішно");
-            Menu form = new Menu();
+            MenuForm form = new MenuForm();
             this.Hide();
             form.Show();
         }

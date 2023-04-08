@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Tests : Form
+    public partial class StartTestsForm : Form
     {
         List<int> ids = new List<int>();
-        List<Question> questions;
-        public Tests()
+        List<Question> questions = new List<Question>();
+        public StartTestsForm()
         {
             InitializeComponent();
             initComboBox();
@@ -18,8 +18,7 @@ namespace SAlab4
 
         private void initComboBox()
         {
-            string json = File.ReadAllText("questions.txt");
-            questions = JsonConvert.DeserializeObject<List<Question>>(json);
+            questions = FileOperating.readFileQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                 if (questions[i].isActive)
@@ -75,7 +74,7 @@ namespace SAlab4
 
         private void openFormTest()
         {
-            Test form = new Test();
+            TestForm form = new TestForm();
             MessageBox.Show("Тест розпочато");
             form.Show();
             this.Close();

@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace SAlab4
 {
-    public partial class Menu : Form
+    public partial class MenuForm : Form
     {
-        public Menu()
+        public MenuForm()
         {
             InitializeComponent();
             if (!Data.currentUser.Roles[0].Contains("admin"))
@@ -23,7 +23,7 @@ namespace SAlab4
 
         private void addTest_Button(object sender, EventArgs e)
         {
-            AddTest form = new AddTest();
+            AddTestForm form = new AddTestForm();
             form.Show();
         }
 
@@ -40,19 +40,19 @@ namespace SAlab4
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Redaging form = new Redaging();
+            RedagingForm form = new RedagingForm();
             form.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Tests form = new Tests();
+            StartTestsForm form = new StartTestsForm();
             form.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Results form = new Results();
+            ResultsForm form = new ResultsForm();
             form.Show();
         }
     }

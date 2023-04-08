@@ -1,6 +1,6 @@
 ﻿namespace SAlab4
 {
-    partial class Redaging
+    partial class RedagingForm
     {
         /// <summary>
         /// Required designer variable.
