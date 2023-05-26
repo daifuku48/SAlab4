@@ -8,13 +8,14 @@ namespace SAlab4
 {
     public partial class RedagForm : Form
     {
+        Repository repository = new Repository();
         private List<Question> questions = new List<Question>();
         public RedagForm()
         {
             InitializeComponent();
             string item = Data.questionForRedag;
             string[] SelectedItem = item.Split('=');
-            questions = FileOperating.readFileQuestions();
+            questions = repository.readFileQuestions();
 
             for (int i = 0; i < questions.Count; i++)
             {
@@ -68,7 +69,7 @@ namespace SAlab4
                     break;
                 }
             }
-            FileOperating.rewriteFileQuestions(questions);
+            repository.rewriteFileQuestions(questions);
             this.Close();
         }
 
@@ -89,7 +90,7 @@ namespace SAlab4
                     newQues.Add(questions[i]);
                 }
             }
-            FileOperating.rewriteFileQuestions(newQues);
+            repository.rewriteFileQuestions(newQues);
             this.Close();
         }
     }

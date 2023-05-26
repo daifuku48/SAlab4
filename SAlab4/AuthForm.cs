@@ -8,6 +8,7 @@ namespace SAlab4
 {
     public partial class AuthForm : Form
     {
+        Repository repository = new Repository();
         public AuthForm()
         {
             InitializeComponent();
@@ -76,19 +77,19 @@ namespace SAlab4
                 return;
             List<string> listRoles = new List<string>() { "user" };
             Data.currentUser = new User(nameTextBox.Text, emailSign.Text, passwordSignIn.Text, listRoles);
-            FileOperating.signMember();
+            repository.signMember();
             MessageBox.Show("Користувача зареєстровано");
             MenuForm form = new MenuForm();
             this.Hide();
             form.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Auth_Button_Click(object sender, EventArgs e)
         {
-            bool checkLog = checkSignIn();
+            bool checkLog = checkLogIn();
             if (!checkLog)
                 return;
-            var checkAuth = FileOperating.loginMember(emailLogIn.Text.Trim(), passwordLogIn.Text.Trim());
+            var checkAuth = repository.loginMember(emailLogIn.Text.Trim(), passwordLogIn.Text.Trim());
             if (!checkAuth)
             {
                 MessageBox.Show("Користувача з даним або емейлом або паролем не існує");

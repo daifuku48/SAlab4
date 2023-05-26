@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="FileOperating.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="ResultsForm.cs">
       <SubType>Form</SubType>
     </Compile>

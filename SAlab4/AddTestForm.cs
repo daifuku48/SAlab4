@@ -8,6 +8,7 @@ namespace SAlab4
 {
     public partial class AddTestForm : Form
     {
+        Repository repository = new Repository();
         public AddTestForm()
         {
             InitializeComponent();
@@ -77,7 +78,7 @@ namespace SAlab4
             Question que = new Question(question, answer1List, answer2List, answer3List);
             string json = File.ReadAllText("questions.txt");
             List<Question> questions = JsonConvert.DeserializeObject<List<Question>>(json);
-            if (questions != null)
+            if (questions.Count != 0 && questions != null)
             {
                 que.id = questions[questions.Count - 1].id + 1;
 
@@ -86,7 +87,7 @@ namespace SAlab4
                 questions = new List<Question>();
             }
             questions.Add(que);
-            FileOperating.rewriteFileQuestions(questions);
+            repository.rewriteFileQuestions(questions);
             label7.Text = "Питання збережено";
             clear();
         }

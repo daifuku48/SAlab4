@@ -67,7 +67,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Початок/зупинення опитувань";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Start_Finish_Button);
             // 
             // button3
             // 
@@ -87,9 +87,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(160, 56);
             this.button4.TabIndex = 4;
-            this.button4.Text = "Тести";
+            this.button4.Text = "Опитування";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Start_test_Button);
             // 
             // button5
             // 
@@ -100,7 +100,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Редагування опитувань";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.RedagingForm_Button);
             // 
             // button6
             // 
@@ -111,9 +111,9 @@
             this.button6.TabIndex = 6;
             this.button6.Text = "Результати опитувань";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.Results_Button);
             // 
-            // Menu
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +125,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Menu";
+            this.Name = "MenuForm";
             this.Text = "Menu";
             this.ResumeLayout(false);
             this.PerformLayout();

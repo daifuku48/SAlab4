@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace SAlab4
 {
     public partial class ResultsForm : Form
     {
+        Repository repository = new Repository();
         List<int> ids = new List<int>();
         List<Question> questions;
         public ResultsForm()
@@ -19,7 +21,7 @@ namespace SAlab4
 
         private void loadQuestions()
         {
-            questions = FileOperating.readFileQuestions();
+            questions = repository.readFileQuestions();
         }
 
         private void writeComboBox()
@@ -92,11 +94,24 @@ namespace SAlab4
         private void writeRightAnswer(Question question)
         {
             if (question.answer1[1] == "1")
+            {
                 label2.Text = "Вірна відповідь";
+                label3.Text = "";
+                label4.Text = "";
+            }
             else if (question.answer2[1] == "1")
+            {
+                label2.Text = "";
                 label3.Text = "Вірна відповідь";
+                label4.Text = "";
+            }    
+                
             else if (question.answer3[1] == "1")
+            {
+                label2.Text = "";
+                label3.Text = "";
                 label4.Text = "Вірна відповідь";
+            }
         }
 
         private void write_answers(Question quest,int answer1, int answer2, int answer3, double totalAnswers)

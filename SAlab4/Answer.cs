@@ -2,7 +2,15 @@
 
 namespace SAlab4
 {
-    public class Answer
+    interface IAnswer
+    {
+        string Email { get; set; }
+        int Id { get; set; }
+        string Quest { get; set; }
+        int Ans { get; set; }
+    }
+
+    public class Answer : IAnswer
     {
         public string Email { get; set; }
         public int Id { get; set; }

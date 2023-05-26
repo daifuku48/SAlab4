@@ -1,7 +1,12 @@
 ﻿
 namespace SAlab4
 {
-    public class Comment
+    interface IComment
+    {
+        string Name { get; set; }
+        string Text { get; set; }
+    }
+    public class Comment : IComment
     {
         public string Name { get; set; }
         public string Text { get; set; }

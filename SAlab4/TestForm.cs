@@ -8,7 +8,7 @@ namespace SAlab4
 {
     public partial class TestForm : Form
     {
-
+        Repository repository = new Repository();
         List<Question> questions = new List<Question>();
         public TestForm()
         {
@@ -51,7 +51,7 @@ namespace SAlab4
             Answer answer = new Answer(Data.currentUser.Email, Data.currentTest.id, Data.currentTest.Quest, ans);
             Data.currentTest.answers.Add(answer);
             Data.currentTest.emailsForCheck.Add(Data.currentUser.Email);
-            questions = FileOperating.readFileQuestions();
+            questions = repository.readFileQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                 if (questions[i].id == Data.currentTest.id)
@@ -59,17 +59,12 @@ namespace SAlab4
                     questions[i] = Data.currentTest;
                 }
             }
-            FileOperating.rewriteFileQuestions(questions);
+            repository.rewriteFileQuestions(questions);
             MessageBox.Show("Відповідь прийнято");
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            addComment();  
-        }
-
-        private void addComment()
+        private void addComment_Click(object sender, EventArgs e)
         {
             string text = textBox1.Text.Trim();
             Comment ans = new Comment(Data.currentUser.Username, text);
@@ -81,7 +76,7 @@ namespace SAlab4
                     questions[i].comments.Add(ans);
                 }
             }
-            FileOperating.rewriteFileQuestions(questions);
+            repository.rewriteFileQuestions(questions);
             listBox1.Items.Add($"{ans.Name}: {ans.Text}");
         }
     }

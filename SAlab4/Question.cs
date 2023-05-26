@@ -2,7 +2,19 @@
 
 namespace SAlab4
 {
-    public class Question
+    interface IQuestion 
+    {
+        int id { get; set; }
+        string Quest { get; set; }
+        List<string> answer1 { get; set; }
+        List<string> answer2 { get; set; }
+        List<string> answer3 { get; set; }
+        bool isActive { get; set; }
+        List<Comment> comments { get; set; }
+        List<string> emailsForCheck { get; set; }
+        List<Answer> answers { get; set; }
+    }
+    public class Question : IQuestion
     {
         public int id { get; set; }
         public string Quest { get; set; }

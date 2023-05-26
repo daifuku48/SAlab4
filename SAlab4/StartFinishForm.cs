@@ -8,6 +8,7 @@ namespace SAlab4
 {
     public partial class StartFinishForm : Form
     {
+        Repository repository = new Repository();
         private List<Question> questions = new List<Question>();
 
         public StartFinishForm()
@@ -20,7 +21,7 @@ namespace SAlab4
 
         private void loadQuestions()
         {
-            questions = FileOperating.readFileQuestions();
+            questions = repository.readFileQuestions();
         }
 
         private void writeComboBoxes()
@@ -56,7 +57,7 @@ namespace SAlab4
                         noActiveComboBox1.Items.RemoveAt(currentIndex);
                     }
                 }
-                FileOperating.rewriteFileQuestions(questions);
+                repository.rewriteFileQuestions(questions);
                 activeComboBox2.Items.Add(item);
                 activeComboBox2.Text = "";
                 label3.Text = "Тест розпочато";
@@ -70,7 +71,7 @@ namespace SAlab4
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void FinishQuest_Click(object sender, EventArgs e)
         {
             if (activeComboBox2.SelectedItem != null)
             {
@@ -85,7 +86,7 @@ namespace SAlab4
                         activeComboBox2.Items.RemoveAt(currentIndex);
                     }
                 }
-                FileOperating.rewriteFileQuestions(questions);
+                repository.rewriteFileQuestions(questions);
                 noActiveComboBox1.Items.Add(item);
                 noActiveComboBox1.Text = "";
                 label3.Text = "Тест зупинено";

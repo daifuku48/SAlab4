@@ -8,17 +8,18 @@ namespace SAlab4
 {
     public partial class RedagingForm : Form
     {
+        Repository repository = new Repository();
         public RedagingForm()
         {
             InitializeComponent();
-            List<Question> questions = FileOperating.readFileQuestions();
+            List<Question> questions = repository.readFileQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                redagComboBox.Items.Add($"{questions[i].id}={questions[i].Quest}");
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void choosingQuestion_Click(object sender, EventArgs e)
         {
             this.Close();
             Data.questionForRedag = redagComboBox.SelectedItem.ToString();

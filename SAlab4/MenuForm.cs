@@ -27,7 +27,7 @@ namespace SAlab4
             form.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Start_Finish_Button(object sender, EventArgs e)
         {
             StartFinishForm form = new StartFinishForm();
             form.Show();
@@ -38,19 +38,19 @@ namespace SAlab4
             Application.Exit();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void RedagingForm_Button(object sender, EventArgs e)
         {
             RedagingForm form = new RedagingForm();
             form.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Start_test_Button(object sender, EventArgs e)
         {
             StartTestsForm form = new StartTestsForm();
             form.Show();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Results_Button(object sender, EventArgs e)
         {
             ResultsForm form = new ResultsForm();
             form.Show();
