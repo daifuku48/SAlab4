@@ -8,7 +8,7 @@ namespace SAlab4
 {
     public partial class AddTestForm : Form
     {
-        Repository repository = new Repository();
+        AddTest addTest = new AddTest();
         public AddTestForm()
         {
             InitializeComponent();
@@ -87,7 +87,7 @@ namespace SAlab4
                 questions = new List<Question>();
             }
             questions.Add(que);
-            repository.rewriteFileQuestions(questions);
+            addTest.addTest(questions);
             label7.Text = "Питання збережено";
             clear();
         }

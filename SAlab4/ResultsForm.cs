@@ -9,7 +9,7 @@ namespace SAlab4
 {
     public partial class ResultsForm : Form
     {
-        Repository repository = new Repository();
+        LookingResults lookingResults = new LookingResults();
         List<int> ids = new List<int>();
         List<Question> questions;
         public ResultsForm()
@@ -21,7 +21,7 @@ namespace SAlab4
 
         private void loadQuestions()
         {
-            questions = repository.readFileQuestions();
+            questions = lookingResults.getAllQuestions();
         }
 
         private void writeComboBox()

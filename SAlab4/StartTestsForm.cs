@@ -8,7 +8,7 @@ namespace SAlab4
 {
     public partial class StartTestsForm : Form
     {
-        Repository repository = new Repository();
+        ChoosingTest choosingTest = new ChoosingTest();
         List<int> ids = new List<int>();
         List<Question> questions = new List<Question>();
         public StartTestsForm()
@@ -19,7 +19,7 @@ namespace SAlab4
 
         private void initComboBox()
         {
-            questions = repository.readFileQuestions();
+            questions = choosingTest.getAllQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                 if (questions[i].isActive)

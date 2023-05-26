@@ -49,8 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTest.cs" />
     <Compile Include="Answer.cs" />
+    <Compile Include="Auth.cs" />
+    <Compile Include="ChoosingTest.cs" />
+    <Compile Include="ChoosingTestForRedaging.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="LookingResults.cs" />
+    <Compile Include="Redag.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ResultsForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +70,7 @@
     <Compile Include="StartFinishForm.Designer.cs">
       <DependentUpon>StartFinishForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartFinishTests.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,7 @@
     <Compile Include="RedagingForm.Designer.cs">
       <DependentUpon>RedagingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Testing.cs" />
     <Compile Include="User.cs" />
     <Compile Include="AuthForm.cs">
       <SubType>Form</SubType>

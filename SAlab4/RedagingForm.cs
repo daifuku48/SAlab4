@@ -8,11 +8,11 @@ namespace SAlab4
 {
     public partial class RedagingForm : Form
     {
-        Repository repository = new Repository();
+        ChoosingTestForRedaging choosingTest = new ChoosingTestForRedaging();
         public RedagingForm()
         {
             InitializeComponent();
-            List<Question> questions = repository.readFileQuestions();
+            List<Question> questions = choosingTest.getAllQuestions();
             for (int i = 0; i < questions.Count; i++)
             {
                redagComboBox.Items.Add($"{questions[i].id}={questions[i].Quest}");
